@@ -1,0 +1,190 @@
+{
+  "version": 2,
+  "cli": {
+    "defaultCollection": "@nrwl/react"
+  },
+  "defaultProject": "doc-crud",
+  "generators": {
+    "@nrwl/react": {
+      "application": {
+        "style": "css",
+        "linter": "eslint",
+        "strict": true,
+        "babel": true
+      },
+      "component": {
+        "style": "css"
+      },
+      "library": {
+        "style": "css",
+        "linter": "eslint",
+        "strict": true
+      }
+    }
+  },
+  "projects": {
+    "doc-crud": {
+      "root": "apps/doc-crud",
+      "sourceRoot": "apps/doc-crud/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/web:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/doc-crud",
+            "index": "apps/doc-crud/src/index.html",
+            "main": "apps/doc-crud/src/main.tsx",
+            "polyfills": "apps/doc-crud/src/polyfills.ts",
+            "tsConfig": "apps/doc-crud/tsconfig.app.json",
+            "assets": [
+              "apps/doc-crud/src/favicon.ico",
+              "apps/doc-crud/src/assets"
+            ],
+            "styles": ["apps/doc-crud/src/styles.css"],
+            "scripts": [],
+            "webpackConfig": "@nrwl/react/plugins/webpack"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/doc-crud/src/environments/environment.ts",
+                  "with": "apps/doc-crud/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/web:dev-server",
+          "options": {
+            "buildTarget": "doc-crud:build",
+            "hmr": true
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "doc-crud:build:production",
+              "hmr": false
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/doc-crud/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/doc-crud"],
+          "options": {
+            "jestConfig": "apps/doc-crud/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "doc-crud-e2e": {
+      "root": "apps/doc-crud-e2e",
+      "sourceRoot": "apps/doc-crud-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/doc-crud-e2e/cypress.json",
+            "tsConfig": "apps/doc-crud-e2e/tsconfig.e2e.json",
+            "devServerTarget": "doc-crud:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "doc-crud:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/doc-crud-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "doc-api": {
+      "root": "apps/doc-api",
+      "projectType": "application",
+      "sourceRoot": "apps/doc-api",
+      "targets": {
+        "build": {
+          "executor": "@nx-dotnet/core:build",
+          "outputs": ["{options.output}"],
+          "options": {
+            "output": "dist/apps/doc-api",
+            "configuration": "Debug"
+          },
+          "configurations": {
+            "production": {
+              "configuration": "Release"
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nx-dotnet/core:serve",
+          "options": {
+            "configuration": "Debug"
+          },
+          "configurations": {
+            "production": {
+              "configuration": "Release"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nx-dotnet/core:format"
+        }
+      }
+    },
+    "doc-api-test": {
+      "root": "apps/doc-api-test",
+      "projectType": "application",
+      "sourceRoot": "apps/doc-api-test",
+      "targets": {
+        "build": {
+          "executor": "@nx-dotnet/core:build",
+          "outputs": ["{options.output}"],
+          "options": {
+            "output": "dist/apps/doc-api-test",
+            "configuration": "Debug"
+          },
+          "configurations": {
+            "production": {
+              "configuration": "Release"
+            }
+          }
+        },
+        "test": {
+          "executor": "@nx-dotnet/core:test",
+          "options": {}
+        },
+        "lint": {
+          "executor": "@nx-dotnet/core:format"
+        }
+      }
+    }
+  }
+}
