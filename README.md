@@ -61,7 +61,6 @@ Figure 4
 to see the generated app first run ***nx serve doc-app*** and then visit
 <http://localhost:4200/> to see the created app in your browser:
 
-![](media/image5.png){width="4.010534776902887in"
-height="5.447090988626422in"}
+![](media/image5.png)
 
 ## 

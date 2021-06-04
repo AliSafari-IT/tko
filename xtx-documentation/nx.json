@@ -31,7 +31,9 @@
     },
     "doc-api-test": {
       "tags": ["nx-dotnet"]
+    },
+    "ui": {
+      "tags": []
     }
-  },
-  "plugins": ["@nx-dotnet/core"]
+  }
 }
